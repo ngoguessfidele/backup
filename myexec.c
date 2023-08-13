@@ -1,22 +1,24 @@
 #include "main.h"
-char *mybuiltin_cmd[] =
-{
-	"cd",
-	"help",
-	"exit"
-};
 
-int (*mybuiltin_fun[])(char **) =
-{
-	&mycd,
-	&myhelp,
-	&myexit
-};
+char *mybuiltin_cmd[] = {                                                                                                                                                                            "cd",                                                                                                                                                                                        "help",                                                                                                                                                                                      "exit"                                                                                                                                                                               };
+
+int (*mybuiltin_fun[])(char **) = {                                                                                                                                                                  &mycd,                                                                                                                                                                                       &myhelp,                                                                                                                                                                                     &myexit                                                                                                                                                                              };
+
+/**
+ * mylen- length of command
+ * Return: len
+ */
 
 int mylen(void)
 {
-	return (sizeof(mybuiltin_cmd) / sizeof(char*));
+	return (sizeof(mybuiltin_cmd) / sizeof(char *));
 }
+
+/**
+ * myexec- execute builtins
+ * @arg: arguments
+ * Return: integer
+ */
 
 int myexec(char **arg)
 {

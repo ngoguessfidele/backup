@@ -6,12 +6,11 @@ int myprocess(char **arg)
 	int status;
 
 	pid = fork();
-	
 	if (pid == 0)
 	{
 		if (execvp(arg[0], arg) == -1)
 			perror("No such path");
-	exit (EXIT_FAILURE);
+	exit(EXIT_FAILURE);
 	}
 	else if (pid < 0)
 	{
@@ -19,8 +18,7 @@ int myprocess(char **arg)
 	}
 	else
 	{
-		do
-		{
+		do {
 			waitpid(pid, &status, WUNTRACED);
 		} while (!WIFEXITED(status) && !WIFSIGNALED(status));
 	}
