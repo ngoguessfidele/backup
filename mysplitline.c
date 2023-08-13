@@ -10,7 +10,7 @@ char **mysplitline(char *line)
 
 	if (!tokens)
 	{
-		fprintf(stderr, "myshell: allocation error\n");
+		perror("myshell: allocation error\n");
 		exit(EXIT_FAILURE);
 	}
 	token = strtok(line, DELIM);
@@ -27,7 +27,7 @@ char **mysplitline(char *line)
 			if (!tokens)
 			{
 				free(tokens_backup);
-				fprintf(stderr, "myshell: allocation error\n");
+				perror("myshell: allocation error\n");
 				exit(EXIT_FAILURE);
 			}
 		}
