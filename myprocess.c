@@ -1,5 +1,11 @@
 #include "main.h"
 
+/**
+ * myprocess- fork and exec
+ * @arg: arguments
+ * Return: 1 on success
+ */
+
 int myprocess(char **arg)
 {
 	pid_t pid;

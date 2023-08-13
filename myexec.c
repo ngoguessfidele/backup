@@ -1,8 +1,16 @@
 #include "main.h"
 
-char *mybuiltin_cmd[] = {                                                                                                                                                                            "cd",                                                                                                                                                                                        "help",                                                                                                                                                                                      "exit"                                                                                                                                                                               };
+char *mybuiltin_cmd[] = {
+	"cd",
+	"help",
+	"exit"
+};
 
-int (*mybuiltin_fun[])(char **) = {                                                                                                                                                                  &mycd,                                                                                                                                                                                       &myhelp,                                                                                                                                                                                     &myexit                                                                                                                                                                              };
+int (*mybuiltin_fun[])(char **) = {
+	&mycd,
+	&myhelp,
+	&myexit
+};
 
 /**
  * mylen- length of command

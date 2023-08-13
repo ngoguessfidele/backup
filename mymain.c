@@ -1,18 +1,11 @@
 #include "main.h"
-/*
-char *mybuiltin_cmd[] =
-{
-	"cd",
-	"help",
-	"exit"
-};
 
-int (*mybuiltin_fun[])(char **) =
-{
-	&mycd,
-	&myhelp,
-	&myexit
-};*/
+/**
+ * main- Entry point
+ * @argc: number of args
+ * @argv: vector of arguments
+ * Return: 0 on success
+ */
 
 int main(int argc, char **argv)
 {
