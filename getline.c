@@ -84,22 +84,3 @@ ssize_t custom_getline(char **lineptr, size_t *n, FILE *stream)
 		index = 0;
 	return (red);
 }
-
-
-int main(void)
-{
-	char *line = NULL;
-	size_t len = 0;
-	ssize_t read;
-	printf("Enter a line: \n");
-
-	while ((read = custom_getline(&line, &len, stdin)) != -1)
-	{
-		printf("Read %zu chars:\n", read);
-		printf("Line: %s", line);
-	}
-
-	free(line);
-
-	return (0);
-}
