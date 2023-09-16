@@ -6,7 +6,7 @@
  * @in: the input
  * @data: the data structure
  */
-void check_env(r_var **h, char *in, data_shell *data)
+void check_env(r_var **h, char *in, myshell *data)
 {
 	int row, chr, j, lval;
 	char **_envr;
@@ -44,7 +44,7 @@ void check_env(r_var **h, char *in, data_shell *data)
  * @data: the data structure
  * Return: variable index
  */
-int check_vars(r_var **h, char *in, char *st, data_shell *data)
+int check_vars(r_var **h, char *in, char *st, myshell *data)
 {
 	int i, lst, lpd;
 
@@ -129,19 +129,19 @@ char *replaced_input(r_var **head, char *input, char *new_input, int nlen)
 /**
  * rep_var- replaces the variables
  * @input: input
- * @datash: the data structure
+ * @data: the data structure
  * Return: replaced string
  */
-char *rep_var(char *input, data_shell *datash)
+char *rep_var(char *input, myshell *data)
 {
 	r_var *head, *indx;
 	char *status, *new_input;
 	int olen, nlen;
 
-	status = aux_itoa(datash->status);
+	status = aux_itoa(data->status);
 	head = NULL;
 
-	olen = check_vars(&head, input, status, datash);
+	olen = check_vars(&head, input, status, data);
 	if (head == NULL)
 	{
 		free(status);

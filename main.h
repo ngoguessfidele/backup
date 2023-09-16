@@ -37,7 +37,7 @@ typedef struct data
 	int counter;
 	char **_environ;
 	char *pid;
-} data_shell;
+} myshell;
 
 /**
  * struct sep_list_s- linked list
@@ -87,7 +87,7 @@ typedef struct r_var_list
 typedef struct builtin_s
 {
 	char *name;
-	int (*f)(data_shell *datash);
+	int (*f)(myshell *data);
 } builtin_t;
 
 /**lists*/
@@ -120,12 +120,12 @@ char **_reallocdp(char **ptr, unsigned int old_size, unsigned int new_size);
 int repeated_char(char *input, int i);
 int error_sep_op(char *input, int i, char last);
 int first_char(char *input, int *i);
-void print_syntax_error(data_shell *datash, char *input, int i, int bool);
-int check_syntax_error(data_shell *datash, char *input);
+void print_syntax_error(myshell *data, char *input, int i, int bool);
+int check_syntax_error(myshell *data, char *input);
 
 /* loop*/
 char *uncomment(char *in);
-void myloop(data_shell *datash);
+void myloop(myshell *data);
 
 /*readline*/
 char *_readline(int *i_eof);
@@ -133,50 +133,50 @@ char *_readline(int *i_eof);
 /* splitline */
 char *dontprint(char *input, int bool);
 void add_nodes(sep_list **head_s, line_list **head_l, char *input);
-void go_next(sep_list **list_s, line_list **list_l, data_shell *datash);
-int split_commands(data_shell *datash, char *input);
+void go_next(sep_list **list_s, line_list **list_l, myshell *data);
+int split_commands(myshell *data, char *input);
 char **split_line(char *input);
 
 /* replace variables */
-void check_env(r_var **h, char *in, data_shell *data);
-int check_vars(r_var **h, char *in, char *st, data_shell *data);
+void check_env(r_var **h, char *in, myshell *data);
+int check_vars(r_var **h, char *in, char *st, myshell *data);
 char *replaced_input(r_var **head, char *input, char *new_input, int nlen);
-char *rep_var(char *input, data_shell *datash);
+char *rep_var(char *input, myshell *data);
 
 /* getline */
 void bring_line(char **lineptr, size_t *n, char *buffer, size_t j);
 ssize_t get_line(char **lineptr, size_t *n, FILE *stream);
 
 /* execute all */
-int exec_line(data_shell *datash);
+int exec_line(myshell *data);
 
 /* executes commads */
 int is_cdir(char *path, int *i);
 char *_which(char *cmd, char **_environ);
-int is_executable(data_shell *datash);
-int check_error_cmd(char *dir, data_shell *datash);
-int cmd_exec(data_shell *datash);
+int is_executable(myshell *data);
+int check_error_cmd(char *dir, myshell *data);
+int cmd_exec(myshell *data);
 
 /* environment */
 char *_getenv(const char *name, char **_environ);
-int _env(data_shell *datash);
+int _env(myshell *data);
 char *copy_info(char *name, char *value);
-void set_env(char *name, char *value, data_shell *datash);
-int _setenv(data_shell *datash);
-int _unsetenv(data_shell *datash);
+void set_env(char *name, char *value, myshell *data);
+int _setenv(myshell *data);
+int _unsetenv(myshell *data);
 
 /* cd */
-void cd_dot(data_shell *datash);
-void cd_to(data_shell *datash);
-void cd_previous(data_shell *datash);
-void cd_to_home(data_shell *datash);
-int cd_shell(data_shell *datash);
+void cd_dot(myshell *data);
+void cd_to(myshell *data);
+void cd_previous(myshell *data);
+void cd_to_home(myshell *data);
+int cd_shell(myshell *data);
 
 /* find builtin_ */
-int (*get_builtin(char *cmd))(data_shell *datash);
+int (*get_builtin(char *cmd))(myshell *data);
 
 /*exit*/
-int exit_shell(data_shell *datash);
+int exit_shell(myshell *data);
 
 /* numbers */
 int get_len(int n);
@@ -184,16 +184,16 @@ char *aux_itoa(int n);
 int _atoi(char *s);
 
 /* errors */
-char *strcat_cd(data_shell *, char *, char *, char *);
-char *cantcd(data_shell *datash);
-char *notfound(data_shell *datash);
-char *cantexit(data_shell *datash);
+char *strcat_cd(myshell *, char *, char *, char *);
+char *cantcd(myshell *data);
+char *notfound(myshell *data);
+char *cantexit(myshell *data);
 char *error_get_alias(char **args);
-char *enverror(data_shell *datash);
+char *enverror(myshell *data);
 char *error_syntax(char **args);
 char *error_permission(char **args);
-char *nopermission(data_shell *datash);
-int get_error(data_shell *datash, int eval);
+char *nopermission(myshell *data);
+int get_error(myshell *data, int eval);
 
 /* signal */
 void get_sigint(int sig);
@@ -207,6 +207,6 @@ void helpexit(void);
 void helpHelp(void);
 void helpalias(void);
 void helpcd(void);
-int get_help(data_shell *datash);
+int get_help(myshell *data);
 
 #endif

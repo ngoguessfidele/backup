@@ -2,30 +2,30 @@
 
 /**
  * get_error- find the error
- * @datash: the data structure
+ * @data: the data structure
  * @eval: error value
  * Return: error
  */
-int get_error(data_shell *datash, int eval)
+int get_error(myshell *data, int eval)
 {
 	char *error;
 
 	switch (eval)
 	{
 		case -1:
-			error = enverror(datash);
+			error = enverror(data);
 			break;
 		case 126:
-			error = nopermission(datash);
+			error = nopermission(data);
 			break;
 		case 127:
-			error = notfound(datash);
+			error = notfound(data);
 			break;
 		case 2:
-			if (_strcmp("exit", datash->args[0]) == 0)
-				error = cantexit(datash);
-			else if (_strcmp("cd", datash->args[0]) == 0)
-				error = cantcd(datash);
+			if (_strcmp("exit", data->args[0]) == 0)
+				error = cantexit(data);
+			else if (_strcmp("cd", data->args[0]) == 0)
+				error = cantcd(data);
 			break;
 	}
 	if (error)
@@ -33,6 +33,6 @@ int get_error(data_shell *datash, int eval)
 		write(STDERR_FILENO, error, _strlen(error));
 		free(error);
 	}
-	datash->status = eval;
+	data->status = eval;
 	return (eval);
 }

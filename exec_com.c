@@ -70,16 +70,16 @@ char *_which(char *cmd, char **_environ)
 
 /**
  * is_executable- is the path executable
- * @datash: the data structure
+ * @data: the data structure
  * Return: positive if yes, or 0
  */
-int is_executable(data_shell *datash)
+int is_executable(myshell *data)
 {
 	struct stat st;
 	int i;
 	char *input;
 
-	input = datash->args[0];
+	input = data->args[0];
 	for (i = 0; input[i]; i++)
 	{
 		if (input[i] == '.')
@@ -107,28 +107,28 @@ int is_executable(data_shell *datash)
 	{
 		return (i);
 	}
-	get_error(datash, 127);
+	get_error(data, 127);
 	return (-1);
 }
 
 /**
  * check_error_cmd-  for permission
  * @dir: directory
- * @datash: the data structure
+ * @data: the data structure
  * Return: 1 if error, or 0
  */
-int check_error_cmd(char *dir, data_shell *datash)
+int check_error_cmd(char *dir, myshell *data)
 {
 	if (dir == NULL)
 	{
-		get_error(datash, 127);
+		get_error(data, 127);
 		return (1);
 	}
-	if (_strcmp(datash->args[0], dir) != 0)
+	if (_strcmp(data->args[0], dir) != 0)
 	{
 		if (access(dir, X_OK) == -1)
 		{
-			get_error(datash, 126);
+			get_error(data, 126);
 			free(dir);
 			return (1);
 		}
@@ -136,9 +136,9 @@ int check_error_cmd(char *dir, data_shell *datash)
 	}
 	else
 	{
-		if (access(datash->args[0], X_OK) == -1)
+		if (access(data->args[0], X_OK) == -1)
 		{
-			get_error(datash, 126);
+			get_error(data, 126);
 			return (1);
 		}
 	}
@@ -147,10 +147,10 @@ int check_error_cmd(char *dir, data_shell *datash)
 
 /**
  * cmd_exec- cmd executtion
- * @datash: the data structure
+ * @data: the data structure
  * Return: 1 on success
  */
-int cmd_exec(data_shell *datash)
+int cmd_exec(myshell *data)
 {
 	pid_t pd;
 	pid_t wpd;
@@ -159,13 +159,13 @@ int cmd_exec(data_shell *datash)
 	char *dir;
 	(void) wpd;
 
-	exec = is_executable(datash);
+	exec = is_executable(data);
 	if (exec == -1)
 		return (1);
 	if (exec == 0)
 	{
-		dir = _which(datash->args[0], datash->_environ);
-		if (check_error_cmd(dir, datash) == 1)
+		dir = _which(data->args[0], data->_environ);
+		if (check_error_cmd(dir, data) == 1)
 			return (1);
 	}
 
@@ -173,14 +173,14 @@ int cmd_exec(data_shell *datash)
 	if (pd == 0)
 	{
 		if (exec == 0)
-			dir = _which(datash->args[0], datash->_environ);
+			dir = _which(data->args[0], data->_environ);
 		else
-			dir = datash->args[0];
-		execve(dir + exec, datash->args, datash->_environ);
+			dir = data->args[0];
+		execve(dir + exec, data->args, data->_environ);
 	}
 	else if (pd < 0)
 	{
-		perror(datash->av[0]);
+		perror(data->av[0]);
 		return (1);
 	}
 	else
@@ -190,6 +190,6 @@ int cmd_exec(data_shell *datash)
 		} while (!WIFEXITED(state) && !WIFSIGNALED(state));
 	}
 
-	datash->status = state / 256;
+	data->status = state / 256;
 	return (1);
 }

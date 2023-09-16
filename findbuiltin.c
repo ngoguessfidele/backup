@@ -5,7 +5,7 @@
  * @cmd: the command
  * Return: pointer to builtin
  */
-int (*get_builtin(char *cmd))(data_shell *)
+int (*get_builtin(char *cmd))(myshell *)
 {
 	builtin_t builtin[] = {
 		{ "env", _env },

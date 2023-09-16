@@ -78,12 +78,12 @@ int first_char(char *input, int *i)
 
 /**
  * print_syntax_error- prints the error
- * @datash: the data struct
+ * @data: the data struct
  * @input: the string
  * @i: index
  * @bool: control msg
  */
-void print_syntax_error(data_shell *datash, char *input, int i, int bool)
+void print_syntax_error(myshell *data, char *input, int i, int bool)
 {
 	char *msg, *msg2, *msg3, *error, *counter;
 	int length;
@@ -102,8 +102,8 @@ void print_syntax_error(data_shell *datash, char *input, int i, int bool)
 
 	msg2 = ": Syntax error: \"";
 	msg3 = "\" unexpcted\n";
-	counter = aux_itoa(datash->counter);
-	length = _strlen(datash->av[0] + _strlen(counter));
+	counter = aux_itoa(data->counter);
+	length = _strlen(data->av[0] + _strlen(counter));
 	length += _strlen(msg) + _strlen(msg2) + _strlen(msg3) + 2;
 
 	error = malloc(sizeof(char) * (length + 1));
@@ -112,7 +112,7 @@ void print_syntax_error(data_shell *datash, char *input, int i, int bool)
 		free(counter);
 		return;
 	}
-	_strcpy(error, datash->av[0]);
+	_strcpy(error, data->av[0]);
 	_strcat(error, ": ");
 	_strcat(error, counter);
 	_strcat(error, msg2);
@@ -127,11 +127,11 @@ void print_syntax_error(data_shell *datash, char *input, int i, int bool)
 
 /**
  * check_syntax_error- finds the error
- * @datash: the data structure
+ * @data: the data structure
  * @input: string
  * Return: 1 if error, or 0
  */
-int check_syntax_error(data_shell *datash, char *input)
+int check_syntax_error(myshell *data, char *input)
 {
 	int begin = 0;
 	int f_char = 0;
@@ -140,13 +140,13 @@ int check_syntax_error(data_shell *datash, char *input)
 	f_char = first_char(input, &begin);
 	if (f_char == -1)
 	{
-		print_syntax_error(datash, input, begin, 0);
+		print_syntax_error(data, input, begin, 0);
 		return (1);
 	}
 	i = error_sep_op(input + begin, 0, *(input + begin));
 	if (i != 0)
 	{
-		print_syntax_error(datash, input, begin + i, 1);
+		print_syntax_error(data, input, begin + i, 1);
 		return (1);
 	}
 	return (0);

@@ -2,17 +2,17 @@
 
 /**
  * exec_line- handle builtin or command
- * @datash: the data structure
+ * @data: the data structure
  * Return: 1 on success
  */
-int exec_line(data_shell *datash)
+int exec_line(myshell *data)
 {
-	int (*builtin)(data_shell *datash);
+	int (*builtin)(myshell *data);
 
-	if (datash->args[0] == NULL)
+	if (data->args[0] == NULL)
 		return (1);
-	builtin = get_builtin(datash->args[0]);
+	builtin = get_builtin(data->args[0]);
 	if (builtin != NULL)
-		return (builtin(datash));
-	return (cmd_exec(datash));
+		return (builtin(data));
+	return (cmd_exec(data));
 }
