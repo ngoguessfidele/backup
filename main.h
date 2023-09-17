@@ -148,7 +148,7 @@ void bring_line(char **lineptr, size_t *n, char *buffer, size_t j);
 ssize_t get_line(char **lineptr, size_t *n, FILE *stream);
 
 /* execute all */
-int exec_line(myshell *data);
+int execute(myshell *data);
 
 /* executes commads */
 int is_cdir(char *path, int *i);
@@ -173,10 +173,10 @@ void cd_to_home(myshell *data);
 int cd_shell(myshell *data);
 
 /* find builtin_ */
-int (*get_builtin(char *cmd))(myshell *data);
+int (*findbuiltin(char *cmd))(myshell *data);
 
 /*exit*/
-int exit_shell(myshell *data);
+int _exit_(myshell *data);
 
 /* numbers */
 int get_len(int n);
@@ -193,7 +193,7 @@ char *enverror(myshell *data);
 char *error_syntax(char **args);
 char *error_permission(char **args);
 char *nopermission(myshell *data);
-int get_error(myshell *data, int eval);
+int finderror(myshell *data, int eval);
 
 /* signal */
 void get_sigint(int sig);

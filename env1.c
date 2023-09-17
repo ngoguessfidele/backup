@@ -62,7 +62,7 @@ int _setenv(myshell *data)
 {
 	if (data->args[1] == NULL || data->args[2] == NULL)
 	{
-		get_error(data, -1);
+		finderror(data, -1);
 		return (1);
 	}
 	set_env(data->args[1], data->args[2], data);
@@ -82,7 +82,7 @@ int _unsetenv(myshell *data)
 
 	if (data->args[1] == NULL)
 	{
-		get_error(data, -1);
+		finderror(data, -1);
 		return (1);
 	}
 	k = -1;
@@ -98,7 +98,7 @@ int _unsetenv(myshell *data)
 	}
 	if (k == -1)
 	{
-		get_error(data, -1);
+		finderror(data, -1);
 		return (1);
 	}
 	realloc_environ = malloc(sizeof(char *) * i);

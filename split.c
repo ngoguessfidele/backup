@@ -136,7 +136,7 @@ int split_commands(myshell *data, char *input)
 	{
 		data->input = list_l->line;
 		data->args = split_line(data->input);
-		loop = exec_line(data);
+		loop = execute(data);
 		free(data->args);
 		if (loop == 0)
 			break;

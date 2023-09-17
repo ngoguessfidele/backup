@@ -1,12 +1,12 @@
 #include "main.h"
 
 /**
- * get_error- find the error
+ * finderror- find the error
  * @data: the data structure
  * @eval: error value
  * Return: error
  */
-int get_error(myshell *data, int eval)
+int finderror(myshell *data, int eval)
 {
 	char *error;
 

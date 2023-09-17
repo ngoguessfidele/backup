@@ -1,11 +1,11 @@
 #include "main.h"
 
 /**
- * exit_shell- exits the shell
+ * _exit_- exits the shell
  * @data: the data structure
  * Return: 0 on success
  */
-int exit_shell(myshell *data)
+int _exit_(myshell *data)
 {
 	unsigned int ustatus;
 	int is_digit;
@@ -20,7 +20,7 @@ int exit_shell(myshell *data)
 		big_number = ustatus > (unsigned int)INT_MAX;
 		if (!is_digit || str_len > 10 || big_number)
 		{
-			get_error(data, 2);
+			finderror(data, 2);
 			data->status = 2;
 			return (1);
 		}

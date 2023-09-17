@@ -1,15 +1,15 @@
 #include "main.h"
 
 /**
- * get_builtin- find the builtin
+ * findbuiltin- find the builtin
  * @cmd: the command
  * Return: pointer to builtin
  */
-int (*get_builtin(char *cmd))(myshell *)
+int (*findbuiltin(char *cmd))(myshell *)
 {
 	builtin_t builtin[] = {
 		{ "env", _env },
-		{ "exit", exit_shell },
+		{ "exit", _exit_ },
 		{ "setenv", _setenv },
 		{ "unsetenv", _unsetenv},
 		{ "cd", cd_shell},

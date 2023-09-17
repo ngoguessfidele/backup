@@ -61,7 +61,7 @@ void cd_to(myshell *data)
 	dir = data->args[1];
 	if (chdir(dir) == -1)
 	{
-		get_error(data, 2);
+		finderror(data, 2);
 		return;
 	}
 	cp_pwd = _strdup(pwd);
@@ -136,7 +136,7 @@ void cd_to_home(myshell *data)
 	}
 	if (chdir(home) == -1)
 	{
-		get_error(data, 2);
+		finderror(data, 2);
 		free(p_pwd);
 		return;
 	}
