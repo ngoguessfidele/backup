@@ -1,11 +1,11 @@
 #include "main.h"
 
 /**
- * get_help- find the help function
+ * findhelp- find the help function
  * @data: the data structure
  * Return: 1 on success
  */
-int get_help(myshell *data)
+int findhelp(myshell *data)
 {
 	if (data->args[1] == 0)
 		help();

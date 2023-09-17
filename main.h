@@ -207,6 +207,6 @@ void helpexit(void);
 void helpHelp(void);
 void helpalias(void);
 void helpcd(void);
-int get_help(myshell *data);
+int findhelp(myshell *data);
 
 #endif
